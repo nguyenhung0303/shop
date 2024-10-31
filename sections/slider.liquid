@@ -1,0 +1,507 @@
+
+{{ 'style_h.css' | asset_url | stylesheet_tag }}
+{{ 'reponsive_h.css' | asset_url | stylesheet_tag }}
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+<section class="char-section" style="{% if section.settings.flickity_btn == false %}--flickity-btn:none;{% endif %}{% if section.settings.flickity_dot == false %}--flickity-dot:none;{% endif %}">
+    <div id="carousel" class="carousel " 
+      data-flickity='{ 
+        "wrapAround": true, 
+        {% if section.settings.slider_autoplay %}
+          "autoPlay": {{ section.settings.slider_speed | times: 1000 }},
+        {% endif %}
+        "draggable": true,
+        "wrapAround": true, 
+      {% if section.settings.slider_autoplay_mobile %} 
+        "autoPlay": {{ section.settings.slider_speed_mobile | times: 1000 }},
+      {% endif %} 
+      "draggable": true 
+      }'>
+      {% for block in section.blocks %}
+        {% if block.settings.image %}
+          <div class="carousel-cell item-slider h-slide"
+          style="
+      --slide-height:{{ section.settings.slide_height }}px;
+      --slide-height-mb:{{ section.settings.slide_height_mobile }}px;
+      ">
+              <img src="{{ block.settings.image | image_url }}" 
+                alt="Block Image"
+                width="100%"
+                height="100%"
+              style="object-fit: cover;">        
+            <div class=" h-content-position {{ section.settings.content_position }}"
+             >
+                <p class="
+                  h-heading
+                  "
+                  style="
+                  --heading-color:{{ block.settings.heading_color }};
+                  --heading-w:{{ block.settings.heading_w}}px;
+                  --heading-size:{{ block.settings.heading_size }}px;
+                  --heading-lh:{{ block.settings.heading_lh }}px;
+                  --heading-fw:{{ block.settings.heading_fw }}px;
+                  --heading-fml:{{ block.settings.heading_fml }};
+                  --heading-mg-top:{{ block.settings.heading_mg_top }}px;
+                  --heading-mg-bottom:{{ block.settings.heading_mg_bottom }}px;
+                  --heading-mg-left:{{ block.settings.heading_mg_left }}px;
+                  --heading-mg-right:{{ block.settings.heading_mg_right }}px;
+                  "
+                >{{ block.settings.heading }}</p>
+                <p>{{ block.settings.subheading }}</p>
+                <a href="{{ block.settings.link }}" class="
+                   h-btn
+                   {% if block.settings.hover_btn %}ef-hover{% endif %}
+                  {% if block.settings.border==true %}h-btn-border{% endif %}"
+                  style="
+                  --border-size:{{ block.settings.border_thickness }}px;
+                  --btn-fs:{{ block.settings.btn_fs}}px;
+                  --animation:{{ block.settings.btn_animation }};
+                  --animation-delay: {{ block.settings.btn_animation_delay }}s;
+                  --hover-color: {{ block.settings.btn_hover_color }};
+                  --btn-font-fml :{{ block.settings.btn_font_fml }};
+                  --btn-width : {{ block.settings.btn_width }}px;
+                  --btn-height : {{ block.settings.btn_height }}px;
+                  --btn-mg-top:{{ block.settings.btn_mg_top }}px;
+                  --btn-mg-bottom:{{ block.settings.btn_mg_bottom }}px;
+                  --btn-mg-right:{{ block.settings.btn_mg_right }}px;
+                  --btn-mg-left:{{ block.settings.btn_mg_left }}px;
+                  --btn-pd-top:{{ block.settings.btn_pd_top }}px;
+                  --btn-pd-bottom:{{ block.settings.btn_pd_bottom }}px;
+                  --btn-pd-left:{{ block.settings.btn_pd_left }}px;
+                  --btn-pd-right:{{ block.settings.btn_pd_right }}px;   
+                  --btn-text-color:{{ block.settings.btn_text_color }};
+                  {% if block.settings.cb_btn_bgr_color %}--btn-bgr-color:{{ block.settings.btn_bgr_color }};{% endif %}
+                      cursor: pointer;"
+                >
+                  {{ block.settings.button_label }}
+                </a>
+              <div>
+           </div>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+</section>
+<script defer="async" src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script defer="async" src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+  {% schema %}
+  {
+    "name": "Slider",
+    "tag": "section",
+    "class": "section",
+    "settings": [
+      {
+        "type": "select",
+        "id": "content_position",
+        "label": "Content",
+        "options": [
+          { "value": "center", "label": "Center" },
+          { "value": "top-left", "label": "Top Left" },
+          { "value": "top-center", "label": "Top Center" },
+          { "value": "top-right", "label": "Top Right" },
+          { "value": "center-left", "label": "Middle Left" },
+          { "value": "center-right", "label": "Middle Right" },
+          { "value": "bottom-left", "label": "Bottom Left" },
+          { "value": "bottom-center", "label": "Bottom Center" },
+          { "value": "bottom-right", "label": "Bottom Right" }
+        ],
+        "default": "center"
+      },
+      {
+        "type": "range",
+        "id": "slide_height",
+        "min": 100,
+        "max": 1000,
+        "step": 10,
+        "default": 700,
+        "unit": "px",
+        "label": "t:sections.slideshow.settings.slide_height.label"
+      },
+      {
+        "type": "range",
+        "id": "slider_speed",
+        "min": 1,
+        "max": 10,
+        "step": 1,
+        "default": 3,
+        "unit": "s",
+        "label": "Delay Auto"
+      },
+      {
+        "type": "checkbox",
+        "id": "slider_autoplay",
+        "label": "Auto",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "flickity_dot",
+        "label": "Dot",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "flickity_btn",
+        "label": "Arrow",
+        "default": false
+      },
+      {
+        "type": "header",
+        "content": "Mobile"
+        },
+      {
+        "type": "range",
+        "id": "slide_height_mobile",
+        "min": 100,
+        "max": 1000,
+        "step": 10,
+        "default": 300,
+        "unit": "px",
+        "label": "Slider Height Mobile"
+      },
+    ],
+    "presets": [
+      {
+        "name": "slider_h"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "hung",
+        "name": "Image Block",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Select Image"
+          },
+          {
+            "type": "header",
+            "content": "Headding"
+          },
+          {
+            "type": "inline_richtext",
+            "id": "heading",
+            "default": "t:sections.slideshow.blocks.slide.settings.heading.default",
+            "label": "t:sections.slideshow.blocks.slide.settings.heading.label"
+          },
+          {
+            "type": "select",
+            "id": "heading_fml",
+            "options": [
+              {
+                "value": "Roboto",
+                "label": "Roboto"
+              },
+              {
+                "value": "Open Sans",
+                "label": "Open Sans"
+              },
+              {
+                "value": "Lato",
+                "label": "Lato"
+              },
+              {
+                "value": "Montserrat",
+                "label": "Montserrat"
+              },
+              {
+                "value": "Poppins",
+                "label": "Poppins"
+              }
+            ],
+            "default": "Lato",
+            "label": "Font"
+          },
+          {
+            "type": "range",
+            "id": "heading_size",
+            "min": 10,
+            "max": 100,
+            "step": 1,
+            "default": 20,
+            "unit": "px",
+            "label": "Font size"
+          },
+          {
+            "type": "range",
+            "id": "heading_fw",
+            "min": 100,
+            "max": 1000,
+            "step": 100,
+            "default": 300,
+            "label": "Font Weight"
+          },
+          {
+            "type": "range",
+            "id": "heading_lh",
+            "min": 10,
+            "max": 100,
+            "step": 1,
+            "default":24,
+            "unit": "px",
+            "label": "Line hight"
+          },
+          
+          {
+            "type": "color",
+            "id": "heading_color",
+            "default": "#000000",
+            "label": "Text Color"
+          },
+          {
+            "type": "range",
+            "id": "heading_w",
+            "min": 10,
+            "max": 1000,
+            "step": 10,
+            "default": 280,
+            "unit": "px",
+            "label": "Width"
+          },
+          {
+            "type": "range",
+            "id": "heading_mg_top",
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "default": 0,
+            "unit": "px",
+            "label": "Margin top"
+          },
+          {
+            "type": "range",
+            "id": "heading_mg_bottom",
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "default": 0,
+            "unit": "px",
+            "label": "Margin bottom"
+          },
+          {
+            "type": "inline_richtext",
+            "id": "subheading",
+            "default": "t:sections.slideshow.blocks.slide.settings.subheading.default",
+            "label": "t:sections.slideshow.blocks.slide.settings.subheading.label"
+          },
+          {
+            "type": "header",
+            "content": "Button"
+            },
+          {
+            "type": "text",
+            "id": "button_label",
+            "default": "t:sections.slideshow.blocks.slide.settings.button_label.default",
+            "label": "t:sections.slideshow.blocks.slide.settings.button_label.label",
+            "info": "t:sections.slideshow.blocks.slide.settings.button_label.info"
+          },
+          {
+            "type": "select",
+            "id": "btn_font_fml",
+            "options": [
+              {
+                "value": "Roboto",
+                "label": "Roboto"
+              },
+              {
+                "value": "Open Sans",
+                "label": "Open Sans"
+              },
+              {
+                "value": "Lato",
+                "label": "Lato"
+              },
+              {
+                "value": "Montserrat",
+                "label": "Montserrat"
+              },
+              {
+                "value": "Poppins",
+                "label": "Poppins"
+              }
+            ],
+            "default": "Lato",
+            "label": "Font"
+          },
+          {
+            "type": "range",
+            "id": "btn_fs",
+            "min": 5,
+            "max": 100,
+            "step": 1,
+            "default": 14,
+            "unit": "px",
+            "label": "Font Size"
+          },
+          {
+            "type": "color",
+            "id": "btn_text_color",
+            "default": "#000000",
+            "label": "Text Color"
+          },
+          
+          {
+            "type": "range",
+            "id": "btn_width",
+            "min": 50,
+            "max": 150,
+            "step": 1,
+            "default": 100,
+            "unit": "px",
+            "label": "Width"
+          },
+          {
+            "type": "range",
+            "id": "btn_height",
+            "min": 10,
+            "max": 500,
+            "step": 10,
+            "default": 30,
+            "unit": "px",
+            "label": "Height"
+          },
+          {
+            "type": "range",
+            "id": "btn_mg_top",
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "default": 0,
+            "unit": "px",
+            "label": "Margin top"
+          },
+          {
+            "type": "range",
+            "id": "btn_mg_bottom",
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "default": 0,
+            "unit": "px",
+            "label": "Margin bottom"
+          },
+          {
+            "type": "range",
+            "id": "btn_pd_top",
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "default": 0,
+            "unit": "px",
+            "label": "Padding top"
+          },
+          {
+            "type": "range",
+            "id": "btn_pd_bottom",
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "default": 0,
+            "unit": "px",
+            "label": "Padding bottom"
+          },
+          {
+            "type": "range",
+            "id": "btn_pd_right",
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "default": 0,
+            "unit": "px",
+            "label": "Pading right"
+          },
+          {
+            "type": "range",
+            "id": "btn_pd_left",
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "default": 0,
+            "unit": "px",
+            "label": "Pading left"
+          },
+          {
+            "type": "checkbox",
+            "id": "border",
+            "label": "border",
+            "default": false
+          },    
+          {
+            "type": "range",
+            "id": "border_thickness",
+            "min": 0.5,
+            "max": 10,
+            "step": 0.5,
+            "default": 1.5,
+            "unit": "px",
+            "label": "Border thickness"
+          },
+          {
+            "type": "checkbox",
+            "id": "cb_btn_bgr_color",
+            "label": "Background",
+            "default": false
+          },  
+          {
+            "type": "color",
+            "id": "btn_bgr_color",
+            "default": "#000000",
+            "label": "Background Color"
+          },
+          {
+            "type": "checkbox",
+            "id": "hover_btn",
+            "label": "Hover Button",
+            "default": false
+          },  
+          {
+            "type": "color",
+            "id": "btn_hover_color",
+            "default": "#000000",
+            "label": "Hover Color"
+          },
+          {
+            "type": "select",
+            "id": "btn_animation",
+            "options": [
+              {
+                "value": "fadeInLeft",
+                "label": "Fade In Left"
+              },
+              {
+                "value": "fadeInRight",
+                "label": "Fade In Right"
+              },
+              {
+                "value": "none",
+                "label": "None"
+              }
+            ],
+            "default": "none",
+            "label": "Animation"
+          },
+          {
+            "type": "range",
+            "id": "btn_animation_delay",
+            "min": 0,
+            "max": 5,
+            "step": 0.5,
+            "default": 0,
+            "label": "Animation Delay (seconds)"
+          },
+          {
+            "type": "url",
+            "id": "link",
+            "label": "t:sections.slideshow.blocks.slide.settings.link.label"
+          },
+
+          
+        ]
+      }
+    ]
+  }
+  {% endschema %}
+   

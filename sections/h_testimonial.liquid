@@ -1,0 +1,546 @@
+{{ 'style_h.css' | asset_url | stylesheet_tag }}
+<link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<section>
+  <div class="h-section-inner bgr">
+    <div class="h-container">
+      <div class="h-section-head">
+        <div class="h-top-head"
+        style="
+         --mgbt:{{ section.settings.testimonaial_mg_bottom }}px;
+         --mgt:{{ section.settings.testimonaial_mg_top }}px;
+         --width:{{ section.settings.testimonaial_head_w }}px;
+        "
+        >
+          <h3 class="h-text-bl"
+        style="
+        --text-fml:{{ section.settings.testimonaial_head_fml }};
+        --text-fs:{{ section.settings.testimonaial_head_fs }}px;
+        --text-fw:{{ section.settings.testimonaial_head_fw }};
+        --text-lh:{{ section.settings.testimonaial_head_lh }}px;
+        --color:{{ section.settings.testimonaial_head_color }};
+        --mg-bottom:{{ section.settings.testimonaial_head_mgbt}}px;
+        ">
+            <span class="h-heading-highlight">{{ section.settings.testimonaial_headbig_text}}</span>
+          </h3>
+        </div>
+      </div>
+      <div class="h-section-content testimonial-ar ">
+        <div class="carousel" data-flickity='{ "wrapAround": true}'>
+        {% for block in section.blocks %}
+          <div class="carousel-cell" style="width:33%">
+            <div class="h-testimonial-wrap" style="">
+              <div class="h-rating-wrapper">
+                <div class="h-rating">
+                    {% for i in (1..block.settings.star_count) %}
+                        <svg width="23" height="21" viewBox="0 0 23 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M11.3552 0L14.5536 6.8872L22.0921 7.80085L16.5304 12.971L17.991 20.4229L11.3552 16.731L4.71937 20.4229L6.17996 12.971L0.618221 7.80085L8.15671 6.8872L11.3552 0Z" fill="#FFC633"/>
+                            </svg>
+                      {% endfor %}
+                </div>
+              </div>
+              <h3 class="h-testimonial-head h-text-bl"
+            style="
+                --text-fml:{{ section.settings.testimonaial_content_head_fml }};
+                --text-fs:{{ section.settings.testimonaial_content_head_fs }}px;
+                --text-fw:{{ section.settings.testimonaial_content_head_fw }};
+                --text-lh:{{ section.settings.testimonaial_content_head_lh }}px;
+                --color:{{ section.settings.testimonaial_content_head_color }};
+                --mg-bottom:{{ section.settings.testimonaial_content_head_mg_bottom}}px;
+                --mg-top:{{ section.settings.testimonaial_content_head_mg_top}}px;
+            ">{{ block.settings.testimonaial_content_head_text }}</h3>
+              <div class="h-testimonial-content h-text-bl"
+                style="
+                --text-fml:{{ section.settings.testimonaial_content_ds_fml }};
+                --text-fs:{{ section.settings.testimonaial_content_ds_fs }}px;
+                --text-fw:{{ section.settings.testimonaial_content_ds_fw }};
+                --text-lh:{{ section.settings.testimonaial_content_ds_lh }}px;
+                --color:{{ section.settings.testimonaial_content_ds_color }};
+                --mg-bottom:{{ section.settings.testimonaial_content_ds_bottom}}px;
+            "
+            >{{ block.settings.testimonaial_content_ds_text }}</div>
+              <div class="h-testimonial-author">
+                <div class="h-testimonial-name h-text-bl"
+                    style="
+                    --text-fml:{{ section.settings.testimonaial_content_name_fml }};
+                    --text-fs:{{ section.settings.testimonaial_content_name_fs }}px;
+                    --text-fw:{{ section.settings.testimonaial_content_name_fw }};
+                    --text-lh:{{ section.settings.testimonaial_content_name_lh }}px;
+                    --color:{{ section.settings.testimonaial_content_name_color }};
+                    --mg-bottom:{{ section.settings.testimonaial_content_name_bottom}}px;
+                "
+                >
+                    {{ block.settings.testimonaial_content_name_text }}
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endfor%}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<script defer="async" src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+
+{% schema %}
+{
+"name": "service_h",
+"tag": "section",
+"class": "section",
+"settings": [
+    {
+        "type": "text",
+        "id": "testimonaial_headbig_text",
+        "default": "title",
+        "label": "Title",
+    },  
+    {
+        "type": "range",
+        "id": "testimonaial_head_w",
+        "min": 0,
+        "max": 1000,
+        "step": 10,
+        "default": 200,
+        "unit": "px",
+        "label": "width"
+      },
+      {
+        "type": "range",
+        "id": "testimonaial_mg_top",
+        "min": 0,
+        "max": 1000,
+        "step": 10,
+        "default": 0,
+        "unit": "px",
+        "label": "magin top"
+      },
+      {
+        "type": "range",
+        "id": "testimonaial_mg_bottom",
+        "min": 0,
+        "max": 1000,
+        "step": 10,
+        "default": 0,
+        "unit": "px",
+        "label": "magin bottom"
+      },
+      {
+        "type": "select",
+        "id": "testimonaial_head_fml",
+        "options": [
+          {
+            "value": "Roboto",
+            "label": "Roboto"
+          },
+          {
+            "value": "Open Sans",
+            "label": "Open Sans"
+          },
+          {
+            "value": "Lato",
+            "label": "Lato"
+          },
+          {
+            "value": "Montserrat",
+            "label": "Montserrat"
+          },
+          {
+            "value": "Poppins",
+            "label": "Poppins"
+          }
+        ],
+        "default": "Lato",
+        "label": "Title Font"
+      },
+      {
+        "type": "color",
+        "id": "testimonaial_head_color",
+        "default": "#000000",
+        "label": "Title text Color"
+      },
+      {
+        "type": "range",
+        "id": "testimonaial_head_fs",
+        "min": 10,
+        "max": 100,
+        "step": 1,
+        "default": 20,
+        "unit": "px",
+        "label": "Title size"
+      },
+      {
+        "type": "range",
+        "id": "testimonaial_head_fw",
+        "min": 100,
+        "max": 1000,
+        "step": 100,
+        "default": 500,
+        "label": "Title font weight"
+      },
+      {
+        "type": "range",
+        "id": "testimonaial_head_lh",
+        "min": 1,
+        "max": 100,
+        "step": 1,
+        "default": 24,
+        "unit": "px",
+        "label": "Title line height"
+      },
+
+      {
+        "type": "header",
+        "content": "CONTENT-HEADINGxxxxxxxxxxxxxxxxxxxxxxxx"
+       },
+        
+      {
+        "type": "select",
+        "id": "testimonaial_content_head_fml",
+        "options": [
+          {
+            "value": "Roboto",
+            "label": "Roboto"
+          },
+          {
+            "value": "Open Sans",
+            "label": "Open Sans"
+          },
+          {
+            "value": "Lato",
+            "label": "Lato"
+          },
+          {
+            "value": "Montserrat",
+            "label": "Montserrat"
+          },
+          {
+            "value": "Poppins",
+            "label": "Poppins"
+          }
+        ],
+        "default": "Lato",
+        "label": "Title Font"
+      },
+      {
+        "type": "color",
+        "id": "testimonaial_content_head_color",
+        "default": "#000000",
+        "label": "Title text Color"
+      },
+      {
+        "type": "range",
+        "id": "testimonaial_content_head_fs",
+        "min": 10,
+        "max": 100,
+        "step": 1,
+        "default": 20,
+        "unit": "px",
+        "label": "Title size"
+      },
+      {
+        "type": "range",
+        "id": "testimonaial_content_head_fw",
+        "min": 100,
+        "max": 1000,
+        "step": 100,
+        "default": 500,
+        "label": "Title font weight"
+      },
+      {
+        "type": "range",
+        "id": "testimonaial_content_head_lh",
+        "min": 1,
+        "max": 100,
+        "step": 1,
+        "default": 24,
+        "unit": "px",
+        "label": "Title line height"
+      },
+      {
+        "type": "range",
+        "id": "testimonaial_content_head_mg_bottom",
+        "min": 0,
+        "max": 1000,
+        "step": 10,
+        "default": 0,
+        "unit": "px",
+        "label": "magin bottom"
+      },
+      {
+        "type": "range",
+        "id": "testimonaial_content_head_mg_top",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "default": 0,
+        "unit": "px",
+        "label": "magin top"
+      },
+      {
+        "type": "header",
+        "content": "CONTENT-DESxxxxxxxxxxxxxxxxxxxxxxxx"
+       },
+      
+      {
+        "type": "select",
+        "id": "testimonaial_content_ds_fml",
+        "options": [
+          {
+            "value": "Roboto",
+            "label": "Roboto"
+          },
+          {
+            "value": "Open Sans",
+            "label": "Open Sans"
+          },
+          {
+            "value": "Lato",
+            "label": "Lato"
+          },
+          {
+            "value": "Montserrat",
+            "label": "Montserrat"
+          },
+          {
+            "value": "Poppins",
+            "label": "Poppins"
+          }
+        ],
+        "default": "Lato",
+        "label": "Title Font"
+      },
+      {
+        "type": "color",
+        "id": "testimonaial_content_ds_color",
+        "default": "#000000",
+        "label": "Title text Color"
+      },
+      {
+        "type": "range",
+        "id": "testimonaial_content_ds_fs",
+        "min": 10,
+        "max": 100,
+        "step": 1,
+        "default": 20,
+        "unit": "px",
+        "label": "Title size"
+      },
+      {
+        "type": "range",
+        "id": "testimonaial_content_ds_fw",
+        "min": 100,
+        "max": 1000,
+        "step": 100,
+        "default": 500,
+        "label": "Title font weight"
+      },
+      {
+        "type": "range",
+        "id": "testimonaial_content_ds_lh",
+        "min": 1,
+        "max": 100,
+        "step": 1,
+        "default": 24,
+        "unit": "px",
+        "label": "Title line height"
+      },
+      {
+        "type": "range",
+        "id": "testimonaial_content_ds_bottom",
+        "min": 0,
+        "max": 1000,
+        "step": 10,
+        "default": 0,
+        "unit": "px",
+        "label": "magin bottom"
+      },
+      {
+        "type": "header",
+        "content": "CONTENT-NAMExxxxxxxxxxxxxxxxxxxxxxxx"
+       },
+    
+      {
+        "type": "select",
+        "id": "testimonaial_content_name_fml",
+        "options": [
+          {
+            "value": "Roboto",
+            "label": "Roboto"
+          },
+          {
+            "value": "Open Sans",
+            "label": "Open Sans"
+          },
+          {
+            "value": "Lato",
+            "label": "Lato"
+          },
+          {
+            "value": "Montserrat",
+            "label": "Montserrat"
+          },
+          {
+            "value": "Poppins",
+            "label": "Poppins"
+          }
+        ],
+        "default": "Lato",
+        "label": "Title Font"
+      },
+      {
+        "type": "color",
+        "id": "testimonaial_content_name_color",
+        "default": "#000000",
+        "label": "Title text Color"
+      },
+      {
+        "type": "range",
+        "id": "testimonaial_content_name_fs",
+        "min": 10,
+        "max": 100,
+        "step": 1,
+        "default": 20,
+        "unit": "px",
+        "label": "Title size"
+      },
+      {
+        "type": "range",
+        "id": "testimonaial_content_name_fw",
+        "min": 100,
+        "max": 1000,
+        "step": 100,
+        "default": 500,
+        "label": "Title font weight"
+      },
+      {
+        "type": "range",
+        "id": "testimonaial_content_name_lh",
+        "min": 1,
+        "max": 100,
+        "step": 1,
+        "default": 24,
+        "unit": "px",
+        "label": "Title line height"
+      },
+      {
+        "type": "range",
+        "id": "testimonaial_content_name_bottom",
+        "min": 0,
+        "max": 1000,
+        "step": 10,
+        "default": 0,
+        "unit": "px",
+        "label": "magin bottom"
+      },
+      {
+        "type": "header",
+        "content": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+        },
+      {
+        "type": "select",
+        "id": "testimonaial_ds_fml",
+        "options": [
+          {
+            "value": "Roboto",
+            "label": "Roboto"
+          },
+          {
+            "value": "Open Sans",
+            "label": "Open Sans"
+          },
+          {
+            "value": "Lato",
+            "label": "Lato"
+          },
+          {
+            "value": "Montserrat",
+            "label": "Montserrat"
+          },
+          {
+            "value": "Poppins",
+            "label": "Poppins"
+          }
+        ],
+        "default": "Lato",
+        "label": "Description Font"
+      },
+      {
+        "type": "color",
+        "id": "testimonaial_ds_color",
+        "default": "#000000",
+        "label": "Description text Color"
+      },
+      {
+        "type": "range",
+        "id": "testimonaial_ds_fs",
+        "min": 10,
+        "max": 100,
+        "step": 1,
+        "default": 20,
+        "unit": "px",
+        "label": "Description size"
+      },
+      {
+        "type": "range",
+        "id": "testimonaial_ds_fw",
+        "min": 100,
+        "max": 1000,
+        "step": 100,
+        "default": 500,
+        "label": "Description font weight"
+      },
+      {
+        "type": "range",
+        "id": "testimonaial_ds_mgbt",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "default": 0,
+        "unit": "px",
+        "label": "Margin Bottom"
+      },
+],
+"presets": [
+    {
+    "name": "testimonial_h"
+    }
+],
+"blocks": [
+    {
+    "type": "hung",
+    "name": "shipping Block",
+    "settings": [
+        {
+            "type": "range",
+            "id": "star_count",
+            "label": "Ratting",
+            "default": 5,
+            "min": 1,
+            "max": 5,
+            "step": 1
+          },
+        {
+            "type": "text",
+            "id": "testimonaial_content_head_text",
+            "default": "title",
+            "label": "heading",
+        }, 
+        {
+            "type": "text",
+            "id": "testimonaial_content_ds_text",
+            "default": "title",
+            "label": "ds",
+        }, 
+        {
+            "type": "text",
+            "id": "testimonaial_content_name_text",
+            "default": "title",
+            "label": "name",
+        }, 
+    ]
+    }
+
+]
+}
+{% endschema %}

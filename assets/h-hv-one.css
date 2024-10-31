@@ -1,0 +1,69 @@
+.hover-img-one {
+  position: relative;
+  width: 400px;
+  height: 400px;
+  overflow: hidden;
+}
+/* Các lớp phủ cho 4 góc */
+.hover-img-one::before,
+.hover-img-one::after,
+.hover-img-one .sbr-hover-img-one,
+.hover-img-one .sbl-hover-img-one {
+  content: '';
+  position: absolute;
+  width: 50%;
+  height: 50%;
+  background-color:  rgb(225 225 225 / 14%);; /* Màu mờ phủ */
+  transition: all 0.5s ease;
+}
+
+/* Góc trái trên */
+.hover-img-one::before {
+  top: 0;
+  left: 0;
+  transform-origin: top left;
+}
+
+/* Góc phải dưới */
+.hover-img-one::after {
+  bottom: 0;
+  right: 0;
+  transform-origin: bottom right;
+}
+
+/* Góc phải trên */
+.hover-img-one .sbr-hover-img-one {
+  top: 0;
+  right: 0;
+  transform-origin: top right;
+}
+
+/* Góc trái dưới */
+.hover-img-one .sbl-hover-img-one {
+  bottom: 0;
+  left: 0;
+  transform-origin: bottom left;
+}
+
+/* Hover: Chia lớp phủ ra 4 góc */
+.hover-img-one:hover::before {
+  transform: translate(-100%, -100%);
+}
+
+.hover-img-one:hover::after {
+  transform: translate(100%, 100%);
+}
+
+.hover-img-one:hover .sbr-hover-img-one {
+  transform: translate(100%, -100%);
+}
+
+.hover-img-one:hover .sbl-hover-img-one {
+  transform: translate(-100%, 100%);
+}
+  /* 
+   <div class="hover-img-one">
+    <div class="sbr-hover-img-one"></div>
+    <div class="sbl-hover-img-one"></div>
+  </div>
+  */

@@ -1,0 +1,47 @@
+<link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+<section>
+    <div>
+      <ul >
+        {% for block in section.blocks %}
+          <li>
+            <a href="{{ block.settings.link }}">
+              {{ block.settings.link_text }}
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </section>
+<script defer="async" src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+  {% schema %}
+  {
+    "name": "menu_h",
+    "tag": "section",
+    "class": "section",
+    "settings": [],
+    "presets": [
+      {
+        "name": "menu_h"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "menu_item",
+        "name": "Menu Item",
+        "settings": [
+          {
+            "type": "url",
+            "id": "link",
+            "label": "Link"
+          },
+          {
+            "type": "text",
+            "id": "link_text",
+            "label": "Link Text"
+          }
+        ]
+      }
+    ]
+  }
+  {% endschema %}
+  

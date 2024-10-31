@@ -1,0 +1,371 @@
+<link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+{{ 'style_h.css' | asset_url | stylesheet_tag }}
+  <section>
+    <div class="h-section-inner" style="--height:{{ section.settings.height }}px";>
+        <div class="h-container">
+          <div class="h-top-head"
+            style="
+             --mgbt:{{ section.settings.testimonaial_mg_bottom }}px;
+             --mgt:{{ section.settings.testimonaial_mg_top }}px;
+             --width:{{ section.settings.testimonaial_head_w }}px;
+            "
+            >
+              <h3 class="h-text-bl"
+            style="
+            --text-fml:{{ section.settings.testimonaial_head_fml }};
+            --text-fs:{{ section.settings.testimonaial_head_fs }}px;
+            --text-fw:{{ section.settings.testimonaial_head_fw }};
+            --text-lh:{{ section.settings.testimonaial_head_lh }}px;
+            --color:{{ section.settings.testimonaial_head_color }};
+            --mg-bottom:{{ section.settings.testimonaial_head_mgbt}}px;
+            ">
+                <span class="h-heading-highlight">{{ section.settings.testimonaial_headbig_text}}</span>
+              </h3>
+            </div>
+            <div class="h-product-inner carousel"data-flickity='{ "wrapAround": true }'>
+                {% for product in collections['all'].products %}
+                <div class="carousel-cell h-product-item" style="">
+                    <div>
+                        <div class="h-product-img">
+                            <a href="{{ product.url }}">
+                                <img src="{{ product.featured_image | image_url }}" alt="{{ product.title }}" width="100%" height="">
+                            </a>
+                        </div>
+                        <div class="h-product-sizes">
+                            <span>
+                                {% assign sizes = product.options_with_values | where: "name", "Size" %}
+                                {% if sizes %}
+                                    {% for size in sizes.first.values %}
+                                    <span class="size">{{ size }}</span>
+                                    {% endfor %}
+                                {% else %}
+                                    <span class="size"></span>
+                                {% endif %}
+                            </span>
+                        </div>
+                        <div class="h-product-info">
+                            <h3 class="h-product-title">
+                                <a class="h-text-bl" href="{{ product.url }}"
+                                  style="
+                                  --text-fml:{{ section.settings.title_fml }};
+                                  --text-fs:{{ section.settings.title_fs }}px;
+                                  --text-fw:{{ section.settings.title_fw }};
+                                  --text-lh:{{ section.settings.title_lh }}px;     
+                                  --color:{{ section.settings.title_color }};
+                                  --mg-bottom:{{ section.settings.title_mg_bottom}}px;
+                                  "
+                                >{{ product.title }}</a>
+                            </h3>
+                            <div class="h-product-price h-text-bl"
+                              style="
+                              --text-fml:{{ section.settings.price_fml }};
+                              --text-fs:{{ section.settings.price_fs }}px;
+                              --text-fw:{{ section.settings.price_fw }};
+                              --text-lh:{{ section.settings.price_lh }}px;     
+                              --color:{{ section.settings.price_color }};
+                              --mg-bottom:{{ section.settings.price_mg_bottom}}px;
+                              "
+                            >{{ product.price | money }}</div>
+                            <div class="h-product-color">
+                                {% assign colors = product.options_with_values | where: "name", "Color" %}
+                                {% if colors %}
+                                    {% for color in colors.first.values %}
+                                    <span class="color-swatch" style="background-color: {{ color | downcase }};"></span>
+                                    {% endfor %}
+                                {% else %}
+                                    <span></span>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+
+
+  <script defer="async" src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+  {% schema %}
+  {
+    "name": "froduct_h",
+    "tag": "section",
+    "class": "section",
+    "settings": [
+      {
+        "type": "range",
+        "id": "height",
+        "min": 100,
+        "max": 1000,
+        "step": 10,
+        "default": 570,
+        "unit": "px",
+        "label": "Height"
+      },
+      {
+        "type": "text",
+        "id": "testimonaial_headbig_text",
+        "default": "title",
+        "label": "Title",
+    },  
+    {
+        "type": "range",
+        "id": "testimonaial_head_w",
+        "min": 0,
+        "max": 1000,
+        "step": 10,
+        "default": 200,
+        "unit": "px",
+        "label": "width"
+      },
+      {
+        "type": "range",
+        "id": "testimonaial_mg_top",
+        "min": 0,
+        "max": 1000,
+        "step": 10,
+        "default": 0,
+        "unit": "px",
+        "label": "magin top"
+      },
+      {
+        "type": "range",
+        "id": "testimonaial_mg_bottom",
+        "min": 0,
+        "max": 1000,
+        "step": 10,
+        "default": 0,
+        "unit": "px",
+        "label": "magin bottom"
+      },
+      {
+        "type": "select",
+        "id": "testimonaial_head_fml",
+        "options": [
+          {
+            "value": "Roboto",
+            "label": "Roboto"
+          },
+          {
+            "value": "Open Sans",
+            "label": "Open Sans"
+          },
+          {
+            "value": "Lato",
+            "label": "Lato"
+          },
+          {
+            "value": "Montserrat",
+            "label": "Montserrat"
+          },
+          {
+            "value": "Poppins",
+            "label": "Poppins"
+          }
+        ],
+        "default": "Lato",
+        "label": "Title Font"
+      },
+      {
+        "type": "color",
+        "id": "testimonaial_head_color",
+        "default": "#000000",
+        "label": "Title text Color"
+      },
+      {
+        "type": "range",
+        "id": "testimonaial_head_fs",
+        "min": 10,
+        "max": 100,
+        "step": 1,
+        "default": 20,
+        "unit": "px",
+        "label": "Title size"
+      },
+      {
+        "type": "range",
+        "id": "testimonaial_head_fw",
+        "min": 100,
+        "max": 1000,
+        "step": 100,
+        "default": 500,
+        "label": "Title font weight"
+      },
+      {
+        "type": "range",
+        "id": "testimonaial_head_lh",
+        "min": 1,
+        "max": 100,
+        "step": 1,
+        "default": 24,
+        "unit": "px",
+        "label": "Title line height"
+      },
+        {
+          "type": "select",
+          "id": "title_fml",
+          "options": [
+            {
+              "value": "Roboto",
+              "label": "Roboto"
+            },
+            {
+              "value": "Open Sans",
+              "label": "Open Sans"
+            },
+            {
+              "value": "Lato",
+              "label": "Lato"
+            },
+            {
+              "value": "Montserrat",
+              "label": "Montserrat"
+            },
+            {
+              "value": "Poppins",
+              "label": "Poppins"
+            }
+          ],
+          "default": "Lato",
+          "label": "Text Font"
+        },         
+        {
+          "type": "range",
+          "id": "title_fs",
+          "min": 1,
+          "max": 100,
+          "step": 1,
+          "default": 24,
+          "unit": "px",
+          "label": "Title size"
+        },
+        {
+          "type": "range",
+          "id": "title_fw",
+          "min": 100,
+          "max": 1000,
+          "step": 100,
+          "default": 300,
+          "label": "Title font weight"
+        },
+        {
+          "type": "range",
+          "id": "title_lh",
+          "min": 1,
+          "max": 100,
+          "step": 1,
+          "default": 24,
+          "unit": "px",
+          "label": "Title line height"
+        },
+        {
+          "type": "color",
+          "id": "title_color",
+          "default": "#fff",
+          "label": "title color"
+        },   
+        {
+          "type": "range",
+          "id": "title_mg_bottom",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 0,
+          "unit": "px",
+          "label": "Title magin bottom"
+        },
+        {
+          "type": "header",
+          "content": "PRICE"
+        },
+        {
+          "type": "select",
+          "id": "price_fml",
+          "options": [
+            {
+              "value": "Roboto",
+              "label": "Roboto"
+            },
+            {
+              "value": "Open Sans",
+              "label": "Open Sans"
+            },
+            {
+              "value": "Lato",
+              "label": "Lato"
+            },
+            {
+              "value": "Montserrat",
+              "label": "Montserrat"
+            },
+            {
+              "value": "Poppins",
+              "label": "Poppins"
+            }
+          ],
+          "default": "Lato",
+          "label": "Text Font"
+        },         
+        {
+          "type": "range",
+          "id": "price_fs",
+          "min": 1,
+          "max": 100,
+          "step": 1,
+          "default": 24,
+          "unit": "px",
+          "label": "Title size"
+        },
+        {
+          "type": "range",
+          "id": "price_fw",
+          "min": 100,
+          "max": 1000,
+          "step": 100,
+          "default": 300,
+          "label": "Title font weight"
+        },
+        {
+          "type": "range",
+          "id": "price_lh",
+          "min": 1,
+          "max": 100,
+          "step": 1,
+          "default": 24,
+          "unit": "px",
+          "label": "Title line height"
+        },
+        {
+          "type": "color",
+          "id": "price_color",
+          "default": "#fff",
+          "label": "title color"
+        },   
+        {
+          "type": "range",
+          "id": "price_mg_bottom",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 0,
+          "unit": "px",
+          "label": "Title magin bottom"
+        },
+      
+      ],
+    "presets": [
+      {
+        "name": "froduct_h"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "hung",
+        "name": "li Block",
+        "settings": []
+      }
+    ]
+  }
+  {% endschema %}
+  

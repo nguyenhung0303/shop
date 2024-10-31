@@ -1,0 +1,58 @@
+<!-- Tệp sections/footer-custom-section.liquid -->
+<section class="footer-custom-section">
+    <div class="container">
+      <h3>{{ section.settings.heading }}</h3>
+      <p>{{ section.settings.description }}</p>
+      <ul>
+        {% for link in section.blocks %}
+          <li><a href="{{ link.settings.link_url }}">{{ link.settings.link_text }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+  </section>
+  
+  {% schema %}
+  {
+    "name": "Footer Custom Section",
+    "settings": [
+      {
+        "type": "text",
+        "id": "heading",
+        "label": "Tiêu đề",
+        "default": "Thông tin thêm"
+      },
+      {
+        "type": "textarea",
+        "id": "description",
+        "label": "Mô tả",
+        "default": "Đây là một mô tả ngắn cho phần footer."
+      }
+    ],
+    "blocks": [
+      {
+        "type": "link",
+        "name": "Liên kết",
+        "settings": [
+          {
+            "type": "text",
+            "id": "link_text",
+            "label": "Tên liên kết",
+            "default": "Trang chủ"
+          },
+          {
+            "type": "url",
+            "id": "link_url",
+            "label": "URL liên kết",
+            "default": "/"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Footer Custom Section"
+      }
+    ]
+  }
+  {% endschema %}
+  

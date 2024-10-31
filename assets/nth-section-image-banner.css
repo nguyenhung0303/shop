@@ -1,0 +1,42 @@
+.product-simple__wrap{
+    display: flex;
+    text-decoration: none;
+    font-weight: 600;
+}
+.product-simple__title{
+    position: relative;
+    padding-right: 15px;
+    margin-right: 15px;
+    display: flex;
+    align-items: center;
+}
+.product-simple__wrap>div:not(:last-child):after{
+    height: 22px;
+    width: 1px;
+    background-color: #000;
+    content: "";
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+}
+.nth-btn{
+    margin-top: 195px;
+}
+.nth-button--secondary{
+    padding: 0;
+}
+.nth-button--secondary:after{
+    border-bottom: 1.6px solid #000;
+    --border-opacity: none;
+}
+
+.nth-button--secondary:hover{
+    color: #0ec1ae;
+}
+.nth-button--secondary:hover:after{
+    color: #0ec1ae;
+    border-bottom: 1.6px solid #0ec1ae;
+}

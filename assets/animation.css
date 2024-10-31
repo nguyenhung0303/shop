@@ -1,0 +1,105 @@
+:root{
+    --animation: fadeInDown;
+    --animation_l: fadeInLeft;
+    --animation_u: fadeInUp;
+}
+@keyframes fadeInDown {
+    0% {
+        opacity: 0;       
+        transform: translateY(-100px); 
+    }
+    100% {
+        opacity: 1;       
+        transform: translateY(0); 
+    }
+}
+@keyframes fadeInLeft {
+    0% {
+        opacity: 0; 
+        transform: translateX(-100px); 
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+@keyframes fadeInUp {
+    0% {
+        opacity: 0; 
+        transform: translateY(100px); 
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.btn-hv-one {
+    position: relative;
+    overflow: hidden;
+    transition: color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .btn-hv-one::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background-color: #0EC1AE;
+    opacity: 0.7;
+    transition: all 0.4s ease;
+    z-index: 1;
+  }
+  
+  .btn-hv-one:hover {
+    color: #fff; 
+    transform: scale(1.05); 
+  }
+  
+  .btn-hv-one:hover::before {
+    left: 0;
+  }
+  
+  .btn-hv-one span {
+    position: relative;
+    z-index: 2;
+    transition: color 0.3s ease;
+  }
+
+  .btn-hv-two {
+    overflow: hidden;
+    transition: color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .btn-hv-two::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 100%;
+    background-color: #F5F5F5; /* Màu nền lớp phủ */
+    transition: all 0.4s ease;
+    z-index: 1;
+    transform: translate(-50%, -50%);
+  }
+  
+  .btn-hv-two:hover {
+    color: #fff; /* Đổi màu chữ thành màu trắng khi hover */
+    transform: scale(1.05); /* Hiệu ứng nổi lên */
+  }
+  
+  .btn-hv-two:hover::before {
+    width: 100%; /* Lớp phủ lan rộng ra toàn bộ từ giữa */
+  }
+  
+  .btn-hv-two span {
+    position: relative;
+    z-index: 2; /* Đảm bảo chữ luôn nằm trên lớp phủ */
+    transition: color 0.3s ease;
+  }
+  
+  
+  
+  
