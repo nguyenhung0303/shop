@@ -45,10 +45,26 @@
   height: var(--height);
   overflow: hidden;
 }
+.h-collection-sl-item{
+  width: 25%;
+ overflow: hidden; 
+ padding: 0 10px;
+}
+.h-collection-content{
+  width: 20%;
+}
+.h-section-coll-inner{
+  width: 80%;
+}
 .h-container{
 margin: auto;
 max-width: 1410px;
 height: auto;
+}
+.h-container-coll{
+  max-width: 1629px;
+  margin-left: auto;
+  margin-right: 20px;
 }
 .h-col-inner{
     padding-top: var(--pd-tb-top);
@@ -226,7 +242,6 @@ height: auto;
     /* ---------------------------------------------- */
 .h-shipping-inner{
   display: flex;
-  padding: 0 15px;
 }
 .h-shipping-icon{
   width: 30%;
@@ -238,11 +253,7 @@ height: auto;
 .h-shipping-content{
   width: 65%;
 }
-@media screen and (max-width: 749px) {
-  .h_carousel_cell{
-    width: 100%;
-  }
-}
+
 .h-service{
   height: var(--service-height);
   margin-top: var(--service-mg-top);
@@ -324,7 +335,7 @@ height: auto;
   background-color: var(--btn-color);
 }
 .h-coll-img{
-  height: 100%;
+  height: auto;
   width: 100%;
 }
 .h-coll-text-hd{
@@ -356,8 +367,12 @@ height: auto;
 }
 .h-testimonial-wrap{
   background-color: #ffff;
-  margin-right: 30px;
   padding: 39px 20px 20px;
+}
+.h-tes{
+  width:33%;
+  padding: 0 10px;
+  
 }
 /* --------------------------------------------------- */
 .h-product-img{
@@ -393,7 +408,7 @@ height: auto;
 .h-product-sizes{
   z-index: 3;
   position: absolute;
-  bottom: 19%;
+  bottom: 25%;
   left: 46%;
 }
 .size{
@@ -401,4 +416,161 @@ height: auto;
 }
 .h-product-img{
   
+}
+/* ---------------------------RESPONSIVE---------------------------------- */
+@media screen and (max-width: 749px) {
+  /* slider-------------- */
+  .h-container{
+    margin: 0;
+    padding:0 15px;
+  }
+  .h-heading{
+    font-size: 26px;
+    line-height: 36px;
+    margin-bottom: 10px;
+  
+  }
+  .h-btn-inner{
+    display: none;
+  }
+  .h-btn{
+    margin-top: 0px;
+  }
+  .h-collection-inner{
+    display: block;
+  }
+  .h-collection-content{
+    width: 100%;
+  }
+  .h-section-coll-inner{
+    width: 100%;
+  }
+  /* --------- */
+  .h_carousel_cell{
+    width: 100%;
+  }
+  .h-collection-sl-item{
+    width: 50%;
+    padding: 0 5px;
+  }
+  .h-coll-img{
+    max-width: 100%;
+  }
+  .h-coll-btn{
+    display: none;
+  }
+    .h-container-coll{
+      padding: 0 15px;
+    max-width: 1410px;
+    height: auto;
+    }
+    .h-section-coll-inner .flickity-button:nth-of-type(1) {
+      left: -5% !important;
+      width: 25px;
+      height: 25px;
+     
+        box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5);
+    
+    }
+    .h-section-coll-inner .flickity-button:nth-of-type(2) {
+      right: -5% !important;
+      width: 25px;
+      height: 25px;
+    
+        box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5);
+    
+    }
+    .h-section-inner{
+      margin-top: var(--mgmb-top);
+      margin-bottom: var(--mgmb-bottom);
+      background-color: var(--color);
+      height: var(--heightmb);
+      overflow: hidden;
+    }
+    .h_animation_img_service{
+      --animation: bounceIn;
+      width: 59px;
+      height: 59px;
+  
+    }
+    .h-shipping-icon{
+      width: 18%;
+      margin-right: 14px;
+    }
+    .h-shipping-content {
+      width: 82%;
+  }
+  .h-coll-text-hd{
+    font-size: 24px;
+    line-height: 30px;
+  }
+  .xd{
+    display: none;
+  }
+  .h-service .flickity-page-dots{
+    display: block;
+    margin-bottom: 10px;
+  }
+  .h-service{
+    margin: 30px 0 30px 0;
+  }
+  .h-coll-text-hd{
+    margin-bottom: 15px;
+  }
+  .h-top-head .h-text-bl{
+    font-size: 24px;
+    font-weight: 300;
+  }
+  .h-top-head{
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  .h-col-inner{
+    margin-bottom: 10px;
+  }
+  .h-product-item{
+    width: 50%;
+    padding: 0 5px;
+  }
+  .h-product-title a{
+    font-size: 16px;
+  }
+  .h-product-price{
+    font-size: 16px;
+    margin-bottom: 6px;
+  }
+  .h-product-sizes {
+    z-index: 3;
+    position: absolute;
+    bottom: 37%;
+    left: 38%;
+}
+.color-swatch{
+  width: 15px;
+  height: 15px;
+}
+.h-product-info{
+  padding-top: 10px;
+}
+.h-product-inner{
+  margin-bottom: 10px;
+}
+.h-tes{
+  width:100%;
+  padding: 0;
+}
+.testimonial-ar .flickity-button:nth-of-type(1) {
+  left: -5% !important;
+  top: 47%;
+  width: 30px;
+  height: 30px;
+  background-color: #ede9e9;
+}
+.testimonial-ar .flickity-button:nth-of-type(2) {
+  right: -5% !important;
+  top: 47%;
+  width: 30px;
+  height: 30px;
+  background-color: #ede9e9;
+}
 }

@@ -10,17 +10,17 @@
     --height:{{ section.settings.height}}px;
     "
     >
-      <div class="h-container">
+      <div class="h-container-coll">
         <div class="h-collection-inner"
         style="--style:{{ section.settings.style }};
         "
       >
-          <div class="h-collection-content" style="width: 20%;">
+          <div class="h-collection-content" style="">
             <div>
                 <h3 class="text-bl h-coll-text-hd">
                     <span>
                       Shop
-                        <br>
+                        <br class="xd">
                       by <span class="h-heading-highlight">{{ section.settings.heading_highlight }}</span>
                     </span>
                 </h3>
@@ -41,10 +41,10 @@
                 </a>
             </div>
           </div>
-          <div class="h-section-coll-inner" style="width: 80%;">
+          <div class="h-section-coll-inner" style="">
             <div class="h-collection-sl carousel" data-flickity='{ "wrapAround": true }'>
               {% for block in section.blocks %}
-              <div class="h-collection-sl-item carousel-cell" style="width:25%; height:400px;overflow: hidden; margin-left: 20px;">
+              <div class="h-collection-sl-item carousel-cell" style="">
                 <div class="h-coll-img">
                   <a href="">
                     <img src="{{ block.settings.image | image_url }}" alt=""

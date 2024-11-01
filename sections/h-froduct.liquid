@@ -1,7 +1,8 @@
 <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
 {{ 'style_h.css' | asset_url | stylesheet_tag }}
   <section>
-    <div class="h-section-inner" style="--height:{{ section.settings.height }}px";>
+    <div class="h-section-inner" style="--height:{{ section.settings.height }}px; --heightmb:{{ section.settings.heightmb }}px";
+    >
         <div class="h-container">
           <div class="h-top-head"
             style="
@@ -352,7 +353,22 @@
           "unit": "px",
           "label": "Title magin bottom"
         },
-      
+        {
+          "type": "header",
+          "content": "Mobile"
+         },
+          
+        {
+          "type": "range",
+          "id": "heightmb",
+          "min": 100,
+          "max": 1000,
+          "step": 10,
+          "default": 570,
+          "unit": "px",
+          "label": "Height"
+        },
+        
       ],
     "presets": [
       {

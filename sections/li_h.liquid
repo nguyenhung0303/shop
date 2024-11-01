@@ -14,12 +14,17 @@
                     --mgtb-top:{{ section.settings.mgtb_top }}px;
                     --mgtb-bottom:{{ section.settings.mgtb_bottom }}px;
                     --color:{{ section.settings.color }};
+                    --heigh:{{ section.settings.heigh }}px;
+                    --mgmb-top:{{ section.settings.mgmb_top }}px;
+                    --mgmb-bottom:{{ section.settings.mgmb_bottom }}px;
+                    --color:{{ section.settings.color }};
+                    --heightmb:{{ section.settings.heightmb }}px;
                     "
     >
     <div class="h-container">
         <div class="li-inner row">
                 {% for block in section.blocks %}
-                    <div class=" col li-item">
+                    <div class=" col-md-6 col-12 li-item">
                         <div class="h-banner-inner"> 
                             <div class="h-banner-content h-col-inner text-center"
                             style="
@@ -87,12 +92,22 @@
     "class": "section",
     "settings": [
         {
+          "type": "range",
+          "id": "height",
+          "min": 0,
+          "max": 1000,
+          "step": 10,
+          "default": 200,
+          "unit": "px",
+          "label": "height"
+      },
+        {
             "type": "range",
             "id": "mgtb_top",
             "min": 0,
-            "max": 1000,
-            "step": 10,
-            "default": 200,
+            "max": 100,
+            "step": 1,
+            "default": 0,
             "unit": "px",
             "label": "magin top"
         },
@@ -100,9 +115,9 @@
             "type": "range",
             "id": "mgtb_bottom",
             "min": 0,
-            "max": 1000,
-            "step": 10,
-            "default": 200,
+            "max": 100,
+            "step": 1,
+            "default":0,
             "unit": "px",
             "label": "magin bottom"
         },
@@ -112,6 +127,42 @@
             "default": "#fff",
             "label": "Bgr color"
         },
+        {
+          "type": "header",
+          "content": "Mobile"
+          },
+          {
+            "type": "range",
+            "id": "heightmb",
+            "min": 100,
+            "max": 1000,
+            "step": 10,
+            "default": 400,
+            "unit": "px",
+            "label": "Height"
+        },
+        {
+          "type": "range",
+          "id": "mgmb_top",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default":0,
+          "unit": "px",
+          "label": "magin top"
+      },
+      {
+          "type": "range",
+          "id": "mgmb_bottom",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 0,
+          "unit": "px",
+          "label": "magin bottom"
+      },
+
+      
         
     ],
     "presets": [
