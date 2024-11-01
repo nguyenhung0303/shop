@@ -10,36 +10,76 @@
   <link rel="stylesheet" href="assets/style_h.css">
 </head>
 <body>
-  <section>
-      <div class="h-section-inner">
+  <footer>
+    <div class="h-section-inner">
         <div class="h-container">
-          <div class="h-product-inner">
-            <div class="h-product-item" style="width: 24%;">
-                <div>
-                  <div class="h-product-img">
-                    <img src="https://demo-unsen-2.myshopify.com/cdn/shop/products/ultimate-crop-bandeau-tops_black_02.jpg?v=1662714232&width=400" alt="">
+          <div class="h-footer-wrap">
+              <div class="h-col-item">
+                  <div class="h-col-inner">
+                      <div class="h-ft-lg-img">
+                        <img src="" alt="">
+                      </div>
+                      <p class="h-text-bl"></p>
+                      <div class="map">
+                        <div class="map-inner">
+                          <div class="h-location-icon">
+                            <svg style="width: 24px;height: 24px;vertical-align: middle;fill: currentColor;" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512" xml:space="preserve"><path d="M256,0C156.748,0,76,80.748,76,180c0,33.534,9.289,66.26,26.869,94.652l142.885,230.257 c2.737,4.411,7.559,7.091,12.745,7.091c0.04,0,0.079,0,0.119,0c5.231-0.041,10.063-2.804,12.75-7.292L410.611,272.22 C427.221,244.428,436,212.539,436,180C436,80.748,355.252,0,256,0z M384.866,256.818L258.272,468.186l-129.905-209.34 C113.734,235.214,105.8,207.95,105.8,180c0-82.71,67.49-150.2,150.2-150.2S406.1,97.29,406.1,180 C406.1,207.121,398.689,233.688,384.866,256.818z"></path><path d="M256,90c-49.626,0-90,40.374-90,90c0,49.309,39.717,90,90,90c50.903,0,90-41.233,90-90C346,130.374,305.626,90,256,90z M256,240.2c-33.257,0-60.2-27.033-60.2-60.2c0-33.084,27.116-60.2,60.2-60.2s60.1,27.116,60.1,60.2 C316.1,212.683,289.784,240.2,256,240.2z"></path></svg>
+                          </div>
+                          <div class="h-address">
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="h-social-block">
+                        <div class="h-list-social">
+                          <div class="h-social-item">
+                            <a href="">
+                              <svg class=" t4s-icon-facebook" role="presentation" viewBox="0 0 320 512"><path d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"></path></svg>
+                            </a>
+                          </div>
+                          <div class="h-social-item">
+                            <a href="">
+                              <svg class=" t4s-icon-facebook" role="presentation" viewBox="0 0 320 512"><path d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"></path></svg>
+                            </a>
+                          </div>
+                          <div class="h-social-item">
+                            <a href="">
+                              <svg class=" t4s-icon-facebook" role="presentation" viewBox="0 0 320 512"><path d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"></path></svg>
+                            </a>
+                          </div>
+                          <div class="h-social-item">
+                            <a href="">
+                              <svg class=" t4s-icon-facebook" role="presentation" viewBox="0 0 320 512"><path d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"></path></svg>
+                            </a>
+                          </div>
+                        </div>
+                      </div>
                   </div>
-                  <div class="h-product-info">
-                    <div class="h-product-sizes">
-                      <span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                      </span>
+              </div>
+              <div class="footer-menu-inner">
+                {% for block in section.blocks %}
+                  {% if block.type == 'link_list' %}
+                    <div class="footer-menu">
+                      <h3>{{ block.settings.heading }}</h3>
+                      {% assign menu = linklists[block.settings.menu] %}
+                      {% if menu %}
+                        <ul>
+                          {% for link in menu.links %}
+                            <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                          {% endfor %}
+                        </ul>
+                      {% else %}
+                        <p>Không có menu nào được chọn.</p>
+                      {% endif %}
                     </div>
-                    <h3 class="h-product-title"><a href="">Ultimate Crop Bandeau TopsUltimate Crop Bandeau Tops</a></h3>
-                    <div class="h-product-price">$89.00</div>
-                    <div class="h-product-color">
-                      <span></span>
-                      <span></span>
-                    </div>
-                  </div>
-                </div>
-            </div>
+                  {% endif %}
+                {% endfor %}
+              </div>
           </div>
         </div>
-      </div>
-  </section>
+    </div>
+  </footer>
 </body>
 </html>

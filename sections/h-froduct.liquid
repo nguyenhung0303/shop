@@ -1,5 +1,6 @@
 <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
 {{ 'style_h.css' | asset_url | stylesheet_tag }}
+{{ 'animation.css' | asset_url | stylesheet_tag }}
   <section>
     <div class="h-section-inner" style="--height:{{ section.settings.height }}px; --heightmb:{{ section.settings.heightmb }}px";
     >
@@ -81,6 +82,20 @@
                     </div>
                 </div>
                 {% endfor %}
+            </div>
+            <div class="h-products-btn-inner h-text-center">
+              <a href="" class="h-btn h-product-btn h-btn-border-all btn-hv-one" style="
+            --pdtb:{{section.settings.prd_btn_pdtb}}px;
+            --pdlr:{{section.settings.prd_btn_pdlr}}px;
+            --btn-font-fml :{{ section.settings.prd_btn_fml }};
+            --btn-fs:{{ section.settings.prd_btn_fs}}px;
+            --btn-mg-bottom:{{ section.settings.prd_btn_mgbt }}px; 
+            --btn-text-color:{{ section.settings.prd_btn_text_color }};
+            --btn-bgr-color:{{section.settings.prd_btn_bgr_color}};
+            --border-size:{{ section.settings.prd_btn_bd_size }}px
+                ">
+                {{ section.settings.prd_btn }}
+              </a>
             </div>
         </div>
     </div>
@@ -355,9 +370,99 @@
         },
         {
           "type": "header",
+          "content": "Button"
+         },
+         {
+          "type": "text",
+          "id": "prd_btn",
+          "default": "title",
+          "label": "Text",
+      },  
+         {
+          "type": "select",
+          "id": "prd_btn_fml",
+          "options": [
+            {
+              "value": "Roboto",
+              "label": "Roboto"
+            },
+            {
+              "value": "Open Sans",
+              "label": "Open Sans"
+            },
+            {
+              "value": "Lato",
+              "label": "Lato"
+            },
+            {
+              "value": "Montserrat",
+              "label": "Montserrat"
+            },
+            {
+              "value": "Poppins",
+              "label": "Poppins"
+            }
+          ],
+          "default": "Lato",
+          "label": "Button Font"
+        },
+        {
+          "type": "range",
+          "id": "prd_btn_fs",
+          "min": 1,
+          "max": 100,
+          "step": 1,
+          "default": 14,
+          "unit": "px",
+          "label": "font size"
+        },
+        {
+          "type": "color",
+          "id": "prd_btn_text_color",
+          "default": "#fff",
+          "label": "text color"
+        },
+        {
+          "type": "color",
+          "id": "prd_btn_bgr_color",
+          "default": "#fff",
+          "label": "bgr color"
+        },
+        {
+          "type": "range",
+          "id": "prd_btn_bd_size",
+          "min": 0,
+          "max": 10,
+          "step": 0.1,
+          "default":0,
+          "unit": "px",
+          "label": "Border size"
+        },
+         {
+          "type": "range",
+          "id": "prd_btn_pdtb",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default":0,
+          "unit": "px",
+          "label": "Padiding Top Bottom"
+        },
+        {
+          "type": "range",
+          "id": "prd_btn_pdlr",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default":0,
+          "unit": "px",
+          "label": "Padiding Left Right"
+        },
+        {
+          "type": "header",
           "content": "Mobile"
          },
-          
+        
         {
           "type": "range",
           "id": "heightmb",
